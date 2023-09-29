@@ -1,0 +1,22 @@
+services:
+    ansible:
+        build:
+            # https://stackoverflow.com/questions/24537340/docker-adding-a-file-from-a-parent-directory
+            context: .
+            dockerfile: ./ansible/Dockerfile
+        command: sleep infinity
+    ubuntu-1:
+        build:
+            context: .
+            dockerfile: ./ubuntu/Dockerfile
+        command: sleep infinity
+    ubuntu-2:
+        build:
+            context: .
+            dockerfile: ./ubuntu/Dockerfile
+        command: sleep infinity
+    ubuntu-3:
+        build:
+            context: .
+            dockerfile: ./ubuntu/Dockerfile
+        command: sleep infinity
