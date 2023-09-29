@@ -3,7 +3,10 @@ FROM ubuntu:latest
 ARG username="sshuser"
 ARG userpass="sshuser"
 ARG usergroup="sshgroup"
-RUN apt update && apt install  openssh-server sudo -y
+RUN apt-get update && apt-get install -y \
+    sudo \
+    iputils-ping \
+    openssh-server
 # Create a user “sshuser” and group “sshgroup”
 RUN groupadd ${usergroup} && useradd -ms /bin/bash -G ${usergroup},sudo ${username} && echo ${username}:${userpass} | chpasswd
 # Create sshuser directory in home
