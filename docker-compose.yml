@@ -5,18 +5,17 @@ services:
             context: .
             dockerfile: ./ansible/Dockerfile
         command: sleep infinity
+        volumes:
+            - ./ansible:/ansible
     ubuntu-1:
         build:
             context: .
             dockerfile: ./ubuntu/Dockerfile
-        command: sleep infinity
     ubuntu-2:
         build:
             context: .
             dockerfile: ./ubuntu/Dockerfile
-        command: sleep infinity
     ubuntu-3:
         build:
             context: .
             dockerfile: ./ubuntu/Dockerfile
-        command: sleep infinity

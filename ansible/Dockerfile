@@ -5,6 +5,7 @@ ARG usergroup="sshgroup"
 RUN apt-get update && apt-get install -y \
     sudo \
     iputils-ping \
+    dnsutils \
     openssh-client \
     software-properties-common
 RUN apt-add-repository -y ppa:ansible/ansible

@@ -6,6 +6,7 @@ ARG usergroup="sshgroup"
 RUN apt-get update && apt-get install -y \
     sudo \
     iputils-ping \
+    dnsutils \
     openssh-server
 # Create a user “sshuser” and group “sshgroup”
 RUN groupadd ${usergroup} && useradd -ms /bin/bash -G ${usergroup},sudo ${username} && echo ${username}:${userpass} | chpasswd
