@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     openssh-server
 # Create a user “sshuser” and group “sshgroup”
 RUN groupadd ${usergroup} && useradd -ms /bin/bash -G ${usergroup},sudo ${username} && echo ${username}:${userpass} | chpasswd
+# Add user with NOPASSWD to /etc/sudoers
+RUN echo "${username} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Create sshuser directory in home
 RUN mkdir -p /home/${username}/.ssh
 # Copy the ssh public key in the authorized_keys file. The idkey.pub below is a public key file you get from ssh-keygen. They are under ~/.ssh directory by default.
