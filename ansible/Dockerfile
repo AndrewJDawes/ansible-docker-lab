@@ -1,16 +1,28 @@
 FROM ubuntu:latest
+
 ARG username="sshuser"
 ARG userpass="sshuser"
 ARG usergroup="sshgroup"
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
+ENV LANGUAGE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_CTYPE=en_US.UTF-8
+
 RUN apt-get update && apt-get install -y \
     sudo \
     iputils-ping \
     dnsutils \
     openssh-client \
-    software-properties-common
+    software-properties-common \
+    git \
+    curl
 RUN apt-add-repository -y ppa:ansible/ansible
 RUN apt-get update && apt-get install -y \
-    ansible
+    ansible \
+    ansible-lint
 # Create a user “sshuser” and group “sshgroup”
 RUN groupadd ${usergroup} && useradd -ms /bin/bash -G ${usergroup},sudo ${username} && echo ${username}:${userpass} | chpasswd
 # Create sshuser directory in home

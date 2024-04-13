@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+      - name: Install Apache.
+        package:
+            name:
+                - apache2
+            state: present
+
+      - name: Template the index.html file with the host from inventory file.
+        template:
+            src: index.html.j2
+            dest: /var/www/html/index.html
+            owner: root
+            group: root
+            mode: 0644
+        vars:
+            hostname: "{{ ansible_host }}"
+
+      - name: Make sure Apache is started
+        service:
+            name: apache2
+            state: started
+            enabled: yes

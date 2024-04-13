@@ -6,16 +6,22 @@ services:
             dockerfile: ./ansible/Dockerfile
         command: sleep infinity
         volumes:
-            - ./ansible:/ansible
+            - ./:/workspace
     ubuntu-1:
         build:
             context: .
             dockerfile: ./ubuntu/Dockerfile
+        ports:
+        - "4001:80"
     ubuntu-2:
         build:
             context: .
             dockerfile: ./ubuntu/Dockerfile
+        ports:
+        - "4002:80"
     ubuntu-3:
         build:
             context: .
             dockerfile: ./ubuntu/Dockerfile
+        ports:
+        - "4003:80"
