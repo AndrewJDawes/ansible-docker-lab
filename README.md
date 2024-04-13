@@ -1,4 +1,4 @@
-# Ansible: Test with Docker
+# Ansible: Lab with Docker
 
 ## Getting started
 
